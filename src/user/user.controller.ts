@@ -28,7 +28,7 @@ export class UserController {
     return await this.userService.update(userId, userData);
   }
 
-  @UsePipes(new ValidationPipe())
+  @UsePipes(new ValidationPipe())  // 管道
   @Post('users')
   async create(@Body('user') userData: CreateUserDto) {
     return this.userService.create(userData);

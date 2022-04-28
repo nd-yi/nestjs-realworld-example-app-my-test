@@ -49,7 +49,7 @@ export class ProfileService {
 
   async follow(followerEmail: string, username: string): Promise<ProfileRO> {
     if (!followerEmail || !username) {
-      throw new HttpException('Follower email and username not provided.', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Follower email and username not provided.', HttpStatus.BAD_REQUEST); // 异常过滤处理类（两个必须参数response  status
     }
 
     const followingUser = await this.userRepository.findOne({username});

@@ -13,24 +13,24 @@ import {
 } from '@nestjs/swagger';
 
 @ApiBearerAuth()
-@ApiTags('articles')
-@Controller('articles')
+@ApiTags('articles')  // 为控制器附加一个标签
+@Controller('articles')  //  路由的前缀 articles
 export class ArticleController {
 
   constructor(private readonly articleService: ArticleService) {}
 
   @ApiOperation({ summary: 'Get all articles' })
-  @ApiResponse({ status: 200, description: 'Return all articles.'})
+  @ApiResponse({ status: 200, description: 'Return all articles.'})  
   @Get()
   async findAll(@Query() query): Promise<ArticlesRO> {
     return await this.articleService.findAll(query);
   }
 
 
-  @ApiOperation({ summary: 'Get article feed' })
-  @ApiResponse({ status: 200, description: 'Return article feed.'})
+  @ApiOperation({ summary: 'Get article feed' }) // swagger
+  @ApiResponse({ status: 200, description: 'Return article feed.'})  // 处理不同类型的状态码
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @Get('feed')
+  @Get('feed') // 这也是路由前缀
   async getFeed(@User('id') userId: number, @Query() query): Promise<ArticlesRO> {
     return await this.articleService.findFeed(userId, query);
   }
@@ -65,7 +65,7 @@ export class ArticleController {
   @ApiOperation({ summary: 'Delete article' })
   @ApiResponse({ status: 201, description: 'The article has been successfully deleted.'})
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  @Delete(':slug')
+  @Delete(':slug')  // 获取动态的路由参数
   async delete(@Param() params) {
     return this.articleService.delete(params.slug);
   }
@@ -74,7 +74,7 @@ export class ArticleController {
   @ApiResponse({ status: 201, description: 'The comment has been successfully created.'})
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   @Post(':slug/comments')
-  async createComment(@Param('slug') slug, @Body('comment') commentData: CreateCommentDto) {
+  async createComment(@Param('slug') slug, @Body('comment') commentData: CreateCommentDto) { // DTO（数据传输对象 它定义了如何通过网络发送数据
     return await this.articleService.addComment(slug, commentData);
   }
 

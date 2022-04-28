@@ -9,7 +9,7 @@ import { TagModule } from './tag/tag.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRoot(),  // TypeORM 集成 一旦完成，TypeORM 的Connection和 EntityManager 对象就可以在整个项目中注入
     ArticleModule,
     UserModule,
     ProfileModule,
@@ -20,6 +20,9 @@ import { TagModule } from './tag/tag.module';
   ],
   providers: []
 })
+
+
+// typeORM  Connection
 export class ApplicationModule {
   constructor(private readonly connection: Connection) {}
 }

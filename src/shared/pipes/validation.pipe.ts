@@ -3,6 +3,17 @@ import { validate } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
 
+
+// 管道是具有 @Injectable() 装饰器的类。管道应实现 PipeTransform 接口。
+// 管道有两种类型： 验证和转换
+
+// Nest 自带六个开箱即用的管道，即
+// ValidationPipe
+// ParseIntPipe
+// ParseBoolPipe
+// ParseArrayPipe
+// ParseUUIDPipe
+// DefaultValuePipe
 @Injectable()
 export class ValidationPipe implements PipeTransform<any> {
   async transform(value, metadata: ArgumentMetadata) {
@@ -39,3 +50,4 @@ export class ValidationPipe implements PipeTransform<any> {
     return !types.find((type) => metatype === type);
   }
 }
+

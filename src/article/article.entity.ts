@@ -2,10 +2,13 @@ import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, OneToMany,
 import { UserEntity } from '../user/user.entity';
 import { Comment } from './comment.entity';
 
+
+// Entity是由@Entity装饰器装饰的模型。将为此类模型创建数据库表
 @Entity('article')
 export class ArticleEntity {
-
-  @PrimaryGeneratedColumn()
+  
+  // 每个数据库表必须具有包含主键的列
+  @PrimaryGeneratedColumn() // 创建主键（这是自动生成的主键
   id: number;
 
   @Column()

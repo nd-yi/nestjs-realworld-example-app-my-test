@@ -7,6 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(ApplicationModule, appOptions);
   app.setGlobalPrefix('api');
 
+  // Bearer认证  在运行程序前，使用DocumentBuilder在基础文档里添加安全定义。
   const options = new DocumentBuilder()
     .setTitle('NestJS Realworld Example App')
     .setDescription('The Realworld API description')

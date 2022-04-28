@@ -10,9 +10,9 @@ import { CreateArticleDto } from './dto';
 import {ArticleRO, ArticlesRO, CommentsRO} from './article.interface';
 const slug = require('slug');
 
-@Injectable()
+@Injectable()  //provider 前面都需要这个@Injectable()
 export class ArticleService {
-  constructor(
+  constructor(  // 通过 constructor 注入依赖关系
     @InjectRepository(ArticleEntity)
     private readonly articleRepository: Repository<ArticleEntity>,
     @InjectRepository(Comment)
